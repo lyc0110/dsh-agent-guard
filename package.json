@@ -1,0 +1,33 @@
+{
+  "name": "dsh-agent-guard",
+  "version": "0.1.0",
+  "description": "DSH pre-execute gate: ask before a tool call leaks a credential, stops a service, self-elevates, or rewrites host network/registry state.",
+  "private": true,
+  "type": "module",
+  "main": "lib/index.js",
+  "license": "MIT",
+  "files": [
+    "lib",
+    "cordis.patch.yml",
+    "README.md"
+  ],
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "cordis",
+    "plugin",
+    "guard",
+    "safety",
+    "credential"
+  ],
+  "exports": {
+    ".": "./lib/index.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
+}
