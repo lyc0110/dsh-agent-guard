@@ -6,13 +6,15 @@ DSH 的 `tools/pre-execute` 门禁：在工具真正执行前，把**可机械�
 
 ## 装
 
-```bash
-dsh plugin install dsh-agent-guard
-```
+本包不走 npm（`private: true`，防误发）。两种分发方式：
 
-或者在 profile 的 `package.json` 里加依赖，再把 `dsh-agent-guard` 加进 `dsh.profile.bundles`。
+**本地目录**——在 DSH 里用 `plugin_manager` 的 `install_bundle`，target 填 `file:D:\AgentGeneralWorkSpace\tools\dsh-agent-guard`。
+
+**Git 仓库**——把仓库地址加进 profile 的依赖（`pnpm add dsh-agent-guard@git+https://…`），再把 `dsh-agent-guard` 加进 `dsh.profile.bundles`。
 
 **装完必须重启 DSH。** host 插件代码不做热重载，改了文件不重启等于没改。
+
+本机额外做了一步：`~/.dsh/profiles/desktop/node_modules/dsh-agent-guard` 已经是指向本仓库的目录联接，所以改完源码只需重启，不必重新安装。如果哪次 `pnpm install` 把联接冲掉、变回实体副本，重跑一次 `install_bundle` 即可。
 
 ## 拦什么
 
@@ -33,7 +35,7 @@ shell 规则按命令边界锚定，所以 `Write-Host "Stop-Service is forbidde
 
 ## 调
 
-规则表就是 `lib/index.js` 顶部的 `VALUE_RULES` 和 `SHELL_RULES`，纯正则，直接改。改完覆盖 profile 里的副本再重启。
+规则表就是 `lib/index.js` 顶部的 `VALUE_RULES` 和 `SHELL_RULES`，纯正则，直接改。改完跑一遍自检，再重启 DSH。
 
 ## 自检
 
