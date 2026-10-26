@@ -1,7 +1,7 @@
 {
   "name": "dsh-agent-guard",
-  "version": "0.1.0",
-  "description": "DSH pre-execute gate: ask before a tool call leaks a credential, stops a service, self-elevates, or rewrites host network/registry state.",
+  "version": "0.1.1",
+  "description": "DSH pre-execute gate: ask before a tool call leaks a credential, stops a service, self-elevates into a root shell, or rewrites host network/registry state.",
   "private": true,
   "type": "module",
   "main": "lib/index.js",
@@ -18,7 +18,10 @@
     "plugin",
     "guard",
     "safety",
-    "credential"
+    "credential",
+    "pre-execute",
+    "systemctl",
+    "sudo"
   ],
   "exports": {
     ".": "./lib/index.js",
