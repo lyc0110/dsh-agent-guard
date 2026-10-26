@@ -1,0 +1,10 @@
+# 内容一律按 LF 存储、按 LF 检出。
+# Windows 上 core.autocrlf 默认会把工作区换成 CRLF，同一份源码在不同机器上 diff 出整文件改动，都是噪声。
+* text=auto eol=lf
+
+# 二进制，不做行尾转换，也不做文本合并。
+*.png binary
+*.jpg binary
+*.pdf binary
+*.zip binary
+*.node binary
